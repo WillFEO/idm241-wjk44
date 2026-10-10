@@ -1,29 +1,53 @@
 <!doctype html>
+<!--
+  AI Use Disclosure
+  The stylesheet (css/styles.css), the stylesheet link below, and the class names on the three article elements and the NOTE section were added by Claude (Anthropic's AI assistant), working from my prompt. I wrote all of the page content and structure myself.
+
+  My prompt to Claude:
+  Create CSS styling for this page. Edit HTML as needed, but avoid when possible. The page content should be centered, and the page should be responsive.
+
+  In the header section, the page title should be bold and centered. The object and scope lines should be clearly visible, and the video should be a small reference, introducing the user to what they are reading about.
+
+  In the second section, simple styling can be applied. Just make sure that the text is balanced and readable; it can stay left-justified within its section.
+
+  In the third section, each subsection (besides NOTE) should be in its own box. These boxes should be side-by-side at the greatest screen width, become a 2x2 grid when the screen shrinks, and finally collapse to a vertical stack when the screen becomes small enough. The NOTE section should sit below the main four regardless of screen width in its own box.
+
+  For the final section, the comparison images should be side by side, and the video should be above them. These pieces of media and their captions should be centered.
+
+  In general, the page should be slightly styled to match Pinterest's branding, so red and white. Any dividing lines or borders should be thin. When applying spacing, try to use bottom margins as much as possible. Use CSS flexbox and grid wherever they make sense to use. Prioritize readability and clear text over visual flourishes; any visitors should be able to quickly and clearly understand the layout and read the content sequentially.
+-->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IDM241 Alpha Description</title>
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <main>
       <header>
         <h1>Microinteractions Alpha: The Pinterest Card</h1>
         <p>
-          Object: A single pin card in the Pinterest home feed/search results
-          grid (logged-in user).
+          <b>Object:</b> A single pin card in the Pinterest home feed/search
+          results grid (logged-in user).
         </p>
         <p>
-          Scope: Hovering on and off of an unsaved pin. The buttons inside the
-          pin are not included in this scope.
+          <b>Scope:</b> Hovering on and off of an unsaved pin. The buttons
+          inside the pin are not included in this scope.
         </p>
-        <video width="20%" height="auto" controls>
-          <source src="videos/pin-hover.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <div class="comparison">
+          <img
+            src="images/pinterest-pin-no-hover.png"
+            alt="An image showing a Pinterest pin card in its default state, with no hover overlay or buttons."
+          />
+          <img
+            src="images/pinterest-pin-hover.png"
+            alt="An image showing a Pinterest pin card in its hover state, with a semi-transparent gradient overlay and three buttons on top of the overlay."
+          />
+        </div>
       </header>
       <hr />
-      <article>
+      <article class="intro">
         <section>
           <h2>The Link</h2>
           <p>
@@ -42,14 +66,14 @@
         <section>
           <h2>Locating the Object</h2>
           <p>
-            Create an account/Log in, then locate any pin (one of the cards
-            filling the screen) and move your mouse on and off of it to see the
+            Once you are logged in, locate any pin (one of the cards filling the
+            screen) and move your mouse on and off of it to see the
             microinteraction.
           </p>
         </section>
       </article>
       <hr />
-      <article>
+      <article class="breakdown">
         <h2>The Microinteraction Breakdown</h2>
         <section>
           <h3>Triggers</h3>
@@ -148,33 +172,39 @@
             </li>
           </ul>
         </section>
-        <section>
+        <section class="note">
           <h3>NOTE:</h3>
           <p>
-            Each button revealed on hover has its own hover/click states. Those
-            are separate microinteractions and are outside of this scope.
+            The buttons revealed on hover have their own hover/click states.
+            Those are separate microinteractions and are outside of this scope.
           </p>
         </section>
       </article>
       <hr />
-      <article>
+      <article class="visuals">
         <h2>Visualization</h2>
-        <h3>Video of the Microinteraction</h3>
-        <video width="20%" height="auto" controls>
-          <source src="videos/pin-hover.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <h3>Side-by-Side State Comparison</h3>
-        <div class="comparison">
-          <img
-            src="images/pinterest-pin-no-hover.png"
-            alt="An image showing a Pinterest pin card in its default state, with no hover overlay or buttons."
-          />
-          <img
-            src="images/pinterest-pin-hover.png"
-            alt="An image showing a Pinterest pin card in its hover state, with a semi-transparent gradient overlay and three buttons on top of the overlay."
-          />
-        </div>
+        <section>
+          <div>
+            <h3>Video of the Microinteraction</h3>
+            <video controls>
+              <source src="videos/pin-hover.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div>
+            <h3>Side-by-Side State Comparison</h3>
+            <div class="comparison">
+              <img
+                src="images/pinterest-pin-no-hover.png"
+                alt="An image showing a Pinterest pin card in its default state, with no hover overlay or buttons."
+              />
+              <img
+                src="images/pinterest-pin-hover.png"
+                alt="An image showing a Pinterest pin card in its hover state, with a semi-transparent gradient overlay and three buttons on top of the overlay."
+              />
+            </div>
+          </div>
+        </section>
       </article>
     </main>
   </body>
