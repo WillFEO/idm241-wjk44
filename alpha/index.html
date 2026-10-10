@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IDM241 Alpha Description</title>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Microinteractions Alpha: The Pinterest Card</h1>
+        <p>
+          Object: A single pin card in the Pinterest home feed/search results
+          grid (logged-in user).
+        </p>
+        <p>
+          Scope: Hovering on and off of an unsaved pin. The buttons inside the
+          pin are not included in this scope.
+        </p>
+        <video width="20%" height="auto" controls>
+          <source src="videos/pin-hover.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </header>
+      <article>
+        <section>
+          <h2>The Link</h2>
+          <p>
+            <a
+              href="https://www.pinterest.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >https://www.pinterest.com/</a
+            >
+          </p>
+          <p>
+            This link will open in a new tab. You will need to create a free
+            account to view the content and microinteractions.
+          </p>
+        </section>
+        <section>
+          <h2>Locating the Object</h2>
+          <p>
+            Create an account/Log in, then locate any pin (one of the cards
+            filling the screen) and move your mouse on and off of it to see the
+            microinteraction.
+          </p>
+        </section>
+      </article>
+      <article>
+        <h2>The Microinteraction Breakdown</h2>
+        <section>
+          <h3>Triggers</h3>
+          <p>
+            The microinteraction is user-initiated and driven by the mouse
+            cursor on an unsaved pin.
+          </p>
+          <ul>
+            <li>Hover ON</li>
+            <li>Hover OFF</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Rules</h3>
+          <ul>
+            <li>Hover ON</li>
+            <ul>
+              <li>
+                The cursor changes from default arrow to pointing-finger hand
+              </li>
+              <li>
+                A vertical gradient overlay appears over the pin, darkest at the
+                top and fading to transparent at the bottom
+              </li>
+              <li>
+                Three controls appear on top of the gradient: a board selector
+                dropdown in the top left, a red "Save" button in the top right,
+                and a white Share button in the bottom right
+              </li>
+            </ul>
+            <li>Hover OFF</li>
+            <ul>
+              <li>The cursor changes back to default arrow</li>
+              <li>The vertical gradient overlay dissapears</li>
+              <li>
+                The controls dissapear, returning the pin to its original state
+              </li>
+            </ul>
+          </ul>
+          <p>
+            The "..." button below the card is not part of this
+            microinteraction, and stays visible and unchanged in both states.
+          </p>
+        </section>
+        <section>
+          <h3>Feedback</h3>
+          <ul>
+            <li>Hover ON</li>
+            <ul>
+              <li>
+                The cursor changes from default arrow to pointing-finger hand
+              </li>
+              <li>
+                A vertical gradient overlay appears over the pin, darkest at the
+                top and fading to transparent at the bottom
+              </li>
+              <li>
+                Three controls appear on top of the gradient: a board selector
+                dropdown in the top left, a red "Save" button in the top right,
+                and a white Share button in the bottom right
+              </li>
+            </ul>
+            <li>Hover OFF</li>
+            <ul>
+              <li>The cursor changes back to default arrow</li>
+              <li>The vertical gradient overlay dissapears</li>
+              <li>
+                The controls dissapear, returning the pin to its original state
+              </li>
+            </ul>
+          </ul>
+          <p>
+            The feedback for this microinteraction is only visual; there is no
+            auditory or haptic feedback.
+          </p>
+        </section>
+        <section>
+          <h3>Loops and Modes</h3>
+          <p class="label">Loops</p>
+          <ul>
+            <li>
+              Every pin in the Pinterest feed/search results grid has this same
+              microinteraction.
+            </li>
+          </ul>
+          <p class="label">Modes</p>
+          <ul>
+            <li>
+              Unsaved Mode: The overlay shows a red "Save" button as described
+              above.
+            </li>
+            <li>
+              Saved Mode: If the user has already saved the pin, the "Save"
+              button is replaced with a "Saved" button, which is a dark grey
+              instead of red.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>NOTE:</h3>
+          <p>
+            Each button revealed on hover has its own hover/click states. Those
+            are separate microinteractions and are outside of this scope.
+          </p>
+        </section>
+      </article>
+      <article>
+        <h2>Visualization</h2>
+        <h3>Video of the Microinteraction</h3>
+        <video width="20%" height="auto" controls>
+          <source src="videos/pin-hover.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <h3>Side-by-Side State Comparison</h3>
+        <div class="comparison">
+          <img
+            src="images/pinterest-pin-no-hover.png"
+            alt="An image showing a Pinterest pin card in its default state, with no hover overlay or buttons."
+          />
+          <img
+            src="images/pinterest-pin-hover.png"
+            alt="An image showing a Pinterest pin card in its hover state, with a semi-transparent gradient overlay and three buttons on top of the overlay."
+          />
+        </div>
+      </article>
+    </main>
+  </body>
+</html>
