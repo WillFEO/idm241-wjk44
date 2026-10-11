@@ -146,7 +146,7 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 720px;
+  max-width: 800px;
   margin: 0 auto 60px;
   text-align: center;
 }
@@ -158,7 +158,7 @@ header p {
 
 /* ---------- Section 2: Link and Locating the Object ---------- */
 .intro {
-  max-width: 720px;
+  max-width: 800px;
   margin: 0 auto 60px;
 }
 
