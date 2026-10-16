@@ -1,0 +1,176 @@
+<!--
+  AI Use Disclosure
+  I built this page with help from Claude (Anthropic's AI assistant).
+  - Pin component (the markup inside the "pin" div): Claude wrote a step-by-step guide with example code and explanations, and I typed and adjusted it myself. Claude also helped me debug it (broken SVG icon paths, the "..." control being a div instead of a button, and the board selector's line-height) and compared screenshots of my build against the real Pinterest pin to suggest sizing and spacing fixes. The SVG icons were drawn by Claude.
+  - Breakdown sections: copied from my Alpha Description page, which I wrote. Claude revised them to swap color words for the exact values used in the code.
+  - Values such as the Save button red and the gradient opacity were measuredby Claude from my screenshots of Pinterest.
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IDM241 Alpha Build</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="css/pin.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Microinteractions Alpha Build: The Pinterest "Pin" Card</h1>
+        <div class="pin">
+          <div class="pin-card">
+            <img
+              class="pin-image"
+              src="images/pin.jpg"
+              alt='A Pinterest pin of blue text that says, "What&apos;s the best that could happen?"'
+            />
+            <div class="pin-overlay">
+              <button class="pin-board" type="button">
+                Profile<svg
+                  class="pin-chevron"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M4 9l8 8 8-8" />
+                </svg>
+              </button>
+              <button class="pin-save" type="button">Save</button>
+              <button class="pin-share" type="button" aria-label="Share">
+                <svg
+                  class="pin-share-icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M12 14V4M8 8l4-4 4 4M4 14v5h16v-5" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <button class="pin-more" type="button" aria-label="More options">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="5" cy="12" r="2" />
+              <circle cx="12" cy="12" r="2" />
+              <circle cx="19" cy="12" r="2" />
+            </svg>
+          </button>
+        </div>
+      </header>
+      <article class="breakdown">
+        <h2>The Microinteraction Breakdown</h2>
+        <section>
+          <h3>Triggers</h3>
+          <p>
+            The microinteraction is user-initiated and driven by the mouse
+            cursor on an unsaved pin.
+          </p>
+          <ul>
+            <li>Hover ON</li>
+            <li>Hover OFF</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Rules</h3>
+          <ul>
+            <li>Hover ON</li>
+            <ul>
+              <li>
+                The cursor changes from default arrow to pointing-finger hand
+              </li>
+              <li>
+                A vertical gradient overlay appears over the pin, 40% opacity at
+                the top (rgba(0, 0, 0, 0.4)) and fading to 5% at the bottom
+                (rgba(0, 0, 0, 0.05))
+              </li>
+              <li>
+                Three buttons appear on top of the gradient: a board selector
+                dropdown in the top left (white #FFFFFF text with a downward
+                chevron), a #E60023 red "Save" button with #FFFFFF white text in
+                the top right, and a #FFFFFF white Share button with a #111111
+                black icon in the bottom right
+              </li>
+            </ul>
+            <li>Hover OFF</li>
+            <ul>
+              <li>The cursor changes back to the default arrow</li>
+              <li>The vertical gradient overlay disappears</li>
+              <li>
+                The buttons disappear, returning the pin to its original state
+              </li>
+            </ul>
+          </ul>
+          <p>
+            The "..." button below the card is not part of this
+            microinteraction, and stays visible and unchanged in both states.
+          </p>
+        </section>
+        <section>
+          <h3>Feedback</h3>
+          <ul>
+            <li>Hover ON</li>
+            <ul>
+              <li>
+                The cursor changes from default arrow to pointing-finger hand
+              </li>
+              <li>
+                A vertical gradient overlay appears over the pin, 40% opacity at
+                the top (rgba(0, 0, 0, 0.4)) and fading to 5% at the bottom
+                (rgba(0, 0, 0, 0.05))
+              </li>
+              <li>
+                Three buttons appear on top of the gradient: a board selector
+                dropdown in the top left (white #FFFFFF text with a downward
+                chevron), a #E60023 red "Save" button with #FFFFFF white text in
+                the top right, and a #FFFFFF white Share button with a #111111
+                black icon in the bottom right
+              </li>
+            </ul>
+            <li>Hover OFF</li>
+            <ul>
+              <li>The cursor changes back to the default arrow</li>
+              <li>The vertical gradient overlay disappears</li>
+              <li>
+                The buttons disappear, returning the pin to its original state
+              </li>
+            </ul>
+          </ul>
+          <p>
+            The feedback for this microinteraction is only visual; there is no
+            auditory or haptic feedback.
+          </p>
+        </section>
+        <section>
+          <h3>Loops and Modes</h3>
+          <p class="label">Loops</p>
+          <ul>
+            <li>None</li>
+          </ul>
+          <p class="label">Modes</p>
+          <ul>
+            <li>
+              Unsaved Mode: If a pin has not yet been saved, the hover overlay
+              shows a red #E60023 "Save" button as described above.
+            </li>
+            <li>
+              Saved Mode: If the user has already saved the pin, the "Save"
+              button is replaced with a "Saved" button, which is a dark grey
+              instead of red.
+            </li>
+          </ul>
+        </section>
+        <section class="note">
+          <h3>NOTE:</h3>
+          <p>
+            The buttons revealed on pin hover have their own hover/click states.
+            Those are separate microinteractions and are outside of this scope.
+          </p>
+          <p>
+            Pinterest uses its own font, Pin Sans, which isn't publicly
+            available. This build uses Inter, a close free alternative.
+          </p>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,134 @@
+/*
+  AI Use Disclosure
+  This stylesheet was built with help from Claude (Anthropic's AI assistant). Claude wrote a step-by-step guide with example CSS and explanations of each concept (relative/absolute positioning, showing the overlay with :hover, the button reset, and specificity). I typed and adjusted the code myself. Claude also helped debug alignment issues, compared screenshots of my build against the real Pinterest pin to suggest sizing and spacing fixes, measured the colors from my screenshots, and set up the color variables below.
+*/
+
+/* Colors live on .pin (not :root) so the pin is self-contained and can be
+   dropped into another page without depending on styles.css */
+.pin {
+  --pin-red: #e60023;
+  --pin-white: #ffffff;
+  --pin-icon: #111111;
+  --pin-overlay-top: rgba(0, 0, 0, 0.4);
+  --pin-overlay-bottom: rgba(0, 0, 0, 0.05);
+
+  width: 236px;
+  max-width: 100%;
+}
+
+/* ------------------- The card: image and overlay stacked ------------------- */
+.pin-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.pin-image {
+  width: 100%;
+}
+
+/* ------------------- The overlay: hidden by default ------------------- */
+.pin-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--pin-overlay-top),
+    var(--pin-overlay-bottom)
+  );
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Hover ON: show the overlay */
+.pin-card:hover .pin-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Shared button reset for every button in the pin */
+.pin button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* ------------------- The three controls ------------------- */
+.pin .pin-board {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--pin-white);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.pin-chevron {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--pin-white);
+  stroke-width: 2;
+}
+
+.pin .pin-save {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 16px;
+  border-radius: 16px;
+  background-color: var(--pin-red);
+  color: var(--pin-white);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.pin .pin-share {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background-color: var(--pin-white);
+}
+
+.pin-share-icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: var(--pin-icon);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ------------------- The "..." button under the card ------------------- */
+.pin .pin-more {
+  display: block;
+  margin-left: auto;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.pin-more svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  fill: var(--pin-icon);
+}
