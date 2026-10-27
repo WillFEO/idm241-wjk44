@@ -83,7 +83,8 @@
           <ul>
             <li>Hover ON</li>
             <li>Hover OFF</li>
-            <li>Click</li>
+            <li>Toggle ON Click</li>
+            <li>Toggle OFF Click</li>
           </ul>
         </section>
         <section>
@@ -93,7 +94,7 @@
             <li>Hover ON</li>
             <ul>
               <li>
-                The cursor changes from default arrow to pointing-finger hand
+                The default arrow cursor turns into the pointing-finger hand
               </li>
               <li>
                 A vertical gradient overlay fades in over 150ms, 40% opacity at
@@ -110,7 +111,10 @@
             </ul>
             <li>Hover OFF</li>
             <ul>
-              <li>The cursor changes back to the default arrow</li>
+              <li>
+                The pointing-finger hand cursor turns back into the default
+                arrow
+              </li>
               <li>The vertical gradient overlay fades out over 150ms</li>
               <li>
                 The buttons fade out with the overlay, returning the pin to its
@@ -147,31 +151,34 @@
             <ul>
               <li>The button fades back to #E60023 red over 150ms</li>
             </ul>
-            <li>Click (Unsaved)</li>
+            <li>Toggle ON Click</li>
             <ul>
               <li>
                 The button shrinks to 95% over 100ms while pressed and springs
                 back over 150ms on release
               </li>
               <li>
-                The text changes to "Saved!" and pops to 115% size, settling
-                back over 300ms
+                The text changes to "Saved!" with an 800ms spring transition,
+                and pops to 115% size, settling back to 100% over 300ms
               </li>
               <li>
                 Six short #FFFFFF white lines burst out from the button and fade
-                away
+                away over 950ms
               </li>
               <li>
-                The button fades to #333333 dark grey and widens to fit the
-                text over 150ms, staying anchored to the top right corner
+                The button fades to #333333 dark grey and widens to fit the text
+                over 150ms, staying anchored to the top right corner
               </li>
-              <li>After 1 second, "Saved!" fades into "Saved" over 150ms</li>
+              <li>
+                After 1 second, "Saved!" fades into "Saved" over 150ms, and the
+                button narrows to fit the text over 150ms.
+              </li>
               <li>
                 Backend: the pin is added to the board named in the board
-                selector ("Profile")
+                selector ("Profile") in the database
               </li>
             </ul>
-            <li>Click (Saved)</li>
+            <li>Toggle OFF Click</li>
             <ul>
               <li>
                 The button shrinks to 95% over 100ms while pressed and springs
@@ -185,7 +192,9 @@
                 The button fades from #333333 dark grey to #AD081B red over
                 150ms
               </li>
-              <li>Backend: the pin is removed from that board</li>
+              <li>
+                Backend: the pin is removed from that board in the database
+              </li>
             </ul>
           </ul>
           <p>
@@ -205,7 +214,7 @@
             <li>Hover ON</li>
             <ul>
               <li>
-                The cursor changes from default arrow to pointing-finger hand
+                The default arrow cursor turns into the pointing-finger hand
               </li>
               <li>
                 A vertical gradient overlay fades in over 150ms, 40% opacity at
@@ -222,7 +231,10 @@
             </ul>
             <li>Hover OFF</li>
             <ul>
-              <li>The cursor changes back to the default arrow</li>
+              <li>
+                The pointing-finger hand cursor turns back into the default
+                arrow
+              </li>
               <li>The vertical gradient overlay fades out over 150ms</li>
               <li>
                 The buttons fade out with the overlay, returning the pin to its
@@ -259,27 +271,30 @@
             <ul>
               <li>The button fades back to #E60023 red over 150ms</li>
             </ul>
-            <li>Click (Unsaved)</li>
+            <li>Toggle ON Click</li>
             <ul>
               <li>
                 The button shrinks to 95% over 100ms while pressed and springs
                 back over 150ms on release
               </li>
               <li>
-                The text changes to "Saved!" and pops to 115% size, settling
-                back over 300ms
+                The text changes to "Saved!" with an 800ms spring transition,
+                and pops to 115% size, settling back to 100% over 300ms
               </li>
               <li>
                 Six short #FFFFFF white lines burst out from the button and fade
-                away
+                away over 950ms
               </li>
               <li>
-                The button fades to #333333 dark grey and widens to fit the
-                text over 150ms, staying anchored to the top right corner
+                The button fades to #333333 dark grey and widens to fit the text
+                over 150ms, staying anchored to the top right corner
               </li>
-              <li>After 1 second, "Saved!" fades into "Saved" over 150ms</li>
+              <li>
+                After 1 second, "Saved!" fades into "Saved" over 150ms, and the
+                button narrows to fit the text over 150ms.
+              </li>
             </ul>
-            <li>Click (Saved)</li>
+            <li>Toggle OFF Click</li>
             <ul>
               <li>
                 The button shrinks to 95% over 100ms while pressed and springs
@@ -308,14 +323,7 @@
           </ul>
           <p class="label">Modes</p>
           <ul>
-            <li>
-              Unsaved Mode: If a pin has not yet been saved, the hover overlay
-              shows a #E60023 red "Save" button.
-            </li>
-            <li>
-              Saved Mode: If the user has already saved the pin, the hover
-              overlay shows a #333333 dark grey "Saved" button instead.
-            </li>
+            <li>None</li>
           </ul>
         </section>
       </article>
