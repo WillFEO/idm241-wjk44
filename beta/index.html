@@ -1,0 +1,358 @@
+<!doctype html>
+<!--
+  AI Use Disclosure
+  The page structure, class names, and stylesheet (css/styles.css) are copied from my Alpha Description page, which Claude (Anthropic's AI assistant) styled from my prompt.
+  The text content was drafted by Claude from my direction, and I reviewed and edited the draft myself.
+  Visualization: I built the prototype in Figma and recorded the video myself. Claude made the starting SVG frames for each state and walked me through the Figma setup. Claude cut the still images from my video for the side-by-side comparison.
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IDM241 Beta Description</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Microinteractions Beta: The Pinterest "Pin" Card</h1>
+        <p>
+          <b>Objects:</b> A single pin card in the Pinterest home feed/search
+          results grid (logged-in user), its board selector, and its "Save"
+          button.
+        </p>
+        <p>
+          <b>Scope:</b> Hovering on and off of the pin, its board selector, and
+          its "Save" button, and clicking "Save" to save and unsave the pin. The
+          Share and "..." buttons are not included in this scope.
+        </p>
+        <div class="comparison">
+          <img
+            src="images/pin-hover.png"
+            alt="A redesigned Pinterest pin card in its hover state, with the board selector on a dark background and a red Save button."
+          />
+          <img
+            src="images/saved-pop.png"
+            alt='The redesigned pin just after clicking Save, with the button reading "Saved!" in dark grey and short white lines bursting out from it.'
+          />
+        </div>
+      </header>
+      <hr />
+      <article class="intro">
+        <section>
+          <h2>The Link</h2>
+          <p>
+            <a
+              href="https://www.pinterest.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >https://www.pinterest.com/</a
+            >
+          </p>
+          <p>
+            This link will open in a new tab. You will need a free account to
+            view the content and microinteractions.
+          </p>
+        </section>
+        <section>
+          <h2>Locating the Object</h2>
+          <p>
+            Once you are logged in, move your mouse onto any unsaved pin and
+            click "Save". The current version has no transitions, and its save
+            confirmation appears at the bottom of the screen.
+          </p>
+        </section>
+      </article>
+      <hr />
+      <article class="breakdown">
+        <h2>The Microinteraction Breakdown</h2>
+        <section>
+          <h3>Triggers</h3>
+          <p class="label">Pin</p>
+          <ul>
+            <li>Hover ON</li>
+            <li>Hover OFF</li>
+          </ul>
+          <p class="label">Board Selector</p>
+          <ul>
+            <li>Hover ON</li>
+            <li>Hover OFF</li>
+          </ul>
+          <p class="label">"Save" Button</p>
+          <ul>
+            <li>Hover ON</li>
+            <li>Hover OFF</li>
+            <li>Click</li>
+          </ul>
+        </section>
+        <section>
+          <h3>Rules</h3>
+          <p class="label">Pin</p>
+          <ul>
+            <li>Hover ON</li>
+            <ul>
+              <li>
+                The cursor changes from default arrow to pointing-finger hand
+              </li>
+              <li>
+                A vertical gradient overlay fades in over 150ms, 40% opacity at
+                the top (rgba(0, 0, 0, 0.4)) and fading to 5% at the bottom
+                (rgba(0, 0, 0, 0.05))
+              </li>
+              <li>
+                Three buttons fade in with the overlay: a board selector in the
+                top left (#FFFFFF white text and chevron on a 30% black
+                background, rgba(0, 0, 0, 0.3)), a #E60023 red "Save" button
+                with #FFFFFF white text in the top right, and a #FFFFFF white
+                Share button with a #111111 black icon in the bottom right
+              </li>
+            </ul>
+            <li>Hover OFF</li>
+            <ul>
+              <li>The cursor changes back to the default arrow</li>
+              <li>The vertical gradient overlay fades out over 150ms</li>
+              <li>
+                The buttons fade out with the overlay, returning the pin to its
+                original state
+              </li>
+            </ul>
+          </ul>
+          <p class="label">Board Selector</p>
+          <ul>
+            <li>Hover ON</li>
+            <ul>
+              <li>
+                The background darkens to 50% black (rgba(0, 0, 0, 0.5)) over
+                150ms
+              </li>
+            </ul>
+            <li>Hover OFF</li>
+            <ul>
+              <li>
+                The background fades back to 30% black (rgba(0, 0, 0, 0.3)) over
+                150ms
+              </li>
+            </ul>
+          </ul>
+          <p class="label">"Save" Button</p>
+          <ul>
+            <li>Hover ON</li>
+            <ul>
+              <li>
+                The button darkens from #E60023 red to #AD081B red over 150ms
+              </li>
+            </ul>
+            <li>Hover OFF</li>
+            <ul>
+              <li>The button fades back to #E60023 red over 150ms</li>
+            </ul>
+            <li>Click (Unsaved)</li>
+            <ul>
+              <li>
+                The button shrinks to 95% over 100ms while pressed and springs
+                back over 150ms on release
+              </li>
+              <li>
+                The text changes to "Saved!" and pops to 115% size, settling
+                back over 300ms
+              </li>
+              <li>
+                Six short #FFFFFF white lines burst out from the button and fade
+                away
+              </li>
+              <li>
+                The button fades to #333333 dark grey and widens to fit the
+                text over 150ms, staying anchored to the top right corner
+              </li>
+              <li>After 1 second, "Saved!" fades into "Saved" over 150ms</li>
+              <li>
+                Backend: the pin is added to the board named in the board
+                selector ("Profile")
+              </li>
+            </ul>
+            <li>Click (Saved)</li>
+            <ul>
+              <li>
+                The button shrinks to 95% over 100ms while pressed and springs
+                back over 150ms on release
+              </li>
+              <li>
+                The text fades back to "Save" and the button narrows to fit over
+                150ms
+              </li>
+              <li>
+                The button fades from #333333 dark grey to #AD081B red over
+                150ms
+              </li>
+              <li>Backend: the pin is removed from that board</li>
+            </ul>
+          </ul>
+          <p>
+            The Share button and the "..." button below the card are not part of
+            this microinteraction. Share fades in and out with the overlay, and
+            "..." stays visible and unchanged in all states.
+          </p>
+          <p>
+            The backend updates are hypothetical, since this redesign is a
+            concept and is not connected to Pinterest.
+          </p>
+        </section>
+        <section>
+          <h3>Feedback</h3>
+          <p class="label">Pin</p>
+          <ul>
+            <li>Hover ON</li>
+            <ul>
+              <li>
+                The cursor changes from default arrow to pointing-finger hand
+              </li>
+              <li>
+                A vertical gradient overlay fades in over 150ms, 40% opacity at
+                the top (rgba(0, 0, 0, 0.4)) and fading to 5% at the bottom
+                (rgba(0, 0, 0, 0.05))
+              </li>
+              <li>
+                Three buttons fade in with the overlay: a board selector in the
+                top left (#FFFFFF white text and chevron on a 30% black
+                background, rgba(0, 0, 0, 0.3)), a #E60023 red "Save" button
+                with #FFFFFF white text in the top right, and a #FFFFFF white
+                Share button with a #111111 black icon in the bottom right
+              </li>
+            </ul>
+            <li>Hover OFF</li>
+            <ul>
+              <li>The cursor changes back to the default arrow</li>
+              <li>The vertical gradient overlay fades out over 150ms</li>
+              <li>
+                The buttons fade out with the overlay, returning the pin to its
+                original state
+              </li>
+            </ul>
+          </ul>
+          <p class="label">Board Selector</p>
+          <ul>
+            <li>Hover ON</li>
+            <ul>
+              <li>
+                The background darkens to 50% black (rgba(0, 0, 0, 0.5)) over
+                150ms
+              </li>
+            </ul>
+            <li>Hover OFF</li>
+            <ul>
+              <li>
+                The background fades back to 30% black (rgba(0, 0, 0, 0.3)) over
+                150ms
+              </li>
+            </ul>
+          </ul>
+          <p class="label">"Save" Button</p>
+          <ul>
+            <li>Hover ON</li>
+            <ul>
+              <li>
+                The button darkens from #E60023 red to #AD081B red over 150ms
+              </li>
+            </ul>
+            <li>Hover OFF</li>
+            <ul>
+              <li>The button fades back to #E60023 red over 150ms</li>
+            </ul>
+            <li>Click (Unsaved)</li>
+            <ul>
+              <li>
+                The button shrinks to 95% over 100ms while pressed and springs
+                back over 150ms on release
+              </li>
+              <li>
+                The text changes to "Saved!" and pops to 115% size, settling
+                back over 300ms
+              </li>
+              <li>
+                Six short #FFFFFF white lines burst out from the button and fade
+                away
+              </li>
+              <li>
+                The button fades to #333333 dark grey and widens to fit the
+                text over 150ms, staying anchored to the top right corner
+              </li>
+              <li>After 1 second, "Saved!" fades into "Saved" over 150ms</li>
+            </ul>
+            <li>Click (Saved)</li>
+            <ul>
+              <li>
+                The button shrinks to 95% over 100ms while pressed and springs
+                back over 150ms on release
+              </li>
+              <li>
+                The text fades back to "Save" and the button narrows to fit over
+                150ms
+              </li>
+              <li>
+                The button fades from #333333 dark grey to #AD081B red over
+                150ms
+              </li>
+            </ul>
+          </ul>
+          <p>
+            The feedback for this microinteraction is only visual; there is no
+            auditory or haptic feedback.
+          </p>
+        </section>
+        <section>
+          <h3>Loops and Modes</h3>
+          <p class="label">Loops</p>
+          <ul>
+            <li>None</li>
+          </ul>
+          <p class="label">Modes</p>
+          <ul>
+            <li>
+              Unsaved Mode: If a pin has not yet been saved, the hover overlay
+              shows a #E60023 red "Save" button.
+            </li>
+            <li>
+              Saved Mode: If the user has already saved the pin, the hover
+              overlay shows a #333333 dark grey "Saved" button instead.
+            </li>
+          </ul>
+        </section>
+      </article>
+      <hr />
+      <article class="visuals">
+        <h2>Visualization</h2>
+        <section>
+          <div>
+            <h3>Video of the Microinteractions</h3>
+            <video autoplay muted loop controls>
+              <source src="videos/beta-figma-recording.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div>
+            <h3>Side-by-Side State Comparison</h3>
+            <div class="comparison">
+              <img
+                src="images/pin-hover.png"
+                alt="Pin hover: the cursor is on the pin, and the gradient overlay, board selector, red Save button, and Share button are showing."
+              />
+              <img
+                src="images/save-hover.png"
+                alt="Save hover: the cursor is on the Save button, which has darkened to a deeper red."
+              />
+              <img
+                src="images/saved-pop.png"
+                alt='Save click: the button reads "Saved!" in dark grey, with short white lines bursting out from it.'
+              />
+              <img
+                src="images/saved.png"
+                alt='Saved: the button has settled to "Saved" in dark grey while the cursor stays on the pin.'
+              />
+            </div>
+          </div>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
