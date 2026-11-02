@@ -1,0 +1,272 @@
+/*
+  AI Use Disclosure
+  The base of this stylesheet (positioning, the button reset, sizes, and color variables) comes from my Alpha Build pin.css, which I coded myself with Claude's assistance. For the beta, Claude (Anthropic's AI assistant) helped to add the transitions, the board selector background, the Save hover/pressed/saved states, the "Saved!" pop, and the burst lines. Claude also wrote a guide explaining every new piece to help me solidify my full understanding, which I studied.
+*/
+
+/* Colors and timings live on .pin (not :root) so the pin is self-contained
+   and can be dropped into another page without depending on styles.css */
+.pin {
+  --pin-red: #e60023;
+  --pin-red-hover: #ad081b;
+  --pin-saved: #333333;
+  --pin-white: #ffffff;
+  --pin-icon: #111111;
+  --pin-overlay-top: rgba(0, 0, 0, 0.4);
+  --pin-overlay-bottom: rgba(0, 0, 0, 0.05);
+  --pin-board-bg: rgba(0, 0, 0, 0.3);
+  --pin-board-bg-hover: rgba(0, 0, 0, 0.5);
+
+  --pin-fade: 150ms; /* every hover fade, color change, and resize */
+  --pin-press: 100ms; /* the Save button shrinking while pressed */
+  --pin-ease: ease-out;
+  /* Overshoots slightly past its target before settling, like a spring */
+  --pin-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  width: 236px;
+  max-width: 100%;
+}
+
+/* Two pins side by side, centered, wrapping onto two rows on small phones */
+.pins {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+/* ------------------- The card: image and overlay stacked ------------------- */
+.pin-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.pin-image {
+  width: 100%;
+}
+
+/* ------------------- The overlay: hidden by default ------------------- */
+.pin-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--pin-overlay-top),
+    var(--pin-overlay-bottom)
+  );
+  opacity: 0;
+  visibility: hidden;
+  /* Hover ON / OFF: fade over 150ms instead of appearing instantly */
+  transition:
+    opacity var(--pin-fade) var(--pin-ease),
+    visibility var(--pin-fade) var(--pin-ease);
+}
+
+/* Hover ON: show the overlay */
+.pin-card:hover .pin-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Shared button reset for every button in the pin */
+.pin button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* ------------------- Board selector ------------------- */
+.pin .pin-board {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 16px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--pin-board-bg);
+  color: var(--pin-white);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  transition: background-color var(--pin-fade) var(--pin-ease);
+}
+
+/* Board selector Hover ON: 30% black -> 50% black */
+.pin .pin-board:hover {
+  background-color: var(--pin-board-bg-hover);
+}
+
+.pin-chevron {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: var(--pin-white);
+  stroke-width: 2;
+}
+
+/* ------------------- Save button ------------------- */
+.pin .pin-save {
+  position: absolute;
+  top: 12px;
+  right: 12px; /* anchored top right, so it widens to the left */
+  padding: 16px;
+  border-radius: 16px;
+  background-color: var(--pin-red);
+  color: var(--pin-white);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  text-align: left; /* text starts at the left padding, so the ghost lines up */
+  /* "scale" is its own property (separate from "transform"), so the press
+     and the label's pop never overwrite each other */
+  transition:
+    background-color var(--pin-fade) var(--pin-ease),
+    width var(--pin-fade) var(--pin-ease),
+    scale var(--pin-fade) var(--pin-spring);
+}
+
+/* Save Hover ON: #E60023 -> #AD081B */
+.pin .pin-save:hover {
+  background-color: var(--pin-red-hover);
+}
+
+/* Pressed: shrink to 95% over 100ms. On release, the base rule's
+   150ms spring takes over again and bounces it back to 100%. */
+.pin .pin-save:active {
+  scale: 0.95;
+  transition:
+    background-color var(--pin-fade) var(--pin-ease),
+    width var(--pin-fade) var(--pin-ease),
+    scale var(--pin-press) var(--pin-ease);
+}
+
+/* Saved mode (the class is added and removed by js/pin.js).
+   Listed after :hover so the button stays dark grey while hovered. */
+.pin .pin-save.is-saved {
+  background-color: var(--pin-saved);
+}
+
+/* The text inside the button. inline-block so it can be scaled. */
+.pin-save-label {
+  display: inline-block;
+}
+
+/* Crossfade ghost (created by js/pin.js): a copy of the old text sitting
+   exactly on top of the label (16px = the button's padding), fading out
+   while the new text shows underneath */
+.pin-save-ghost {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  pointer-events: none;
+  animation: pin-ghost-out var(--pin-fade) ease-out forwards;
+}
+
+@keyframes pin-ghost-out {
+  to {
+    opacity: 0;
+  }
+}
+
+/* "Saved!" pop: springs up to 115%, then settles back to 100% */
+.pin-save-label.is-popping {
+  animation: pin-pop 800ms linear;
+}
+
+@keyframes pin-pop {
+  0% {
+    transform: scale(1);
+    animation-timing-function: var(--pin-spring);
+  }
+  20% {
+    transform: scale(1.15); /* peak at 160ms */
+    animation-timing-function: ease-in-out;
+  }
+  57.5% {
+    transform: scale(0.98); /* 300ms after the peak, back at about 100% */
+    animation-timing-function: ease-in-out;
+  }
+  80% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ------------------- Burst lines (created by js/pin.js) ------------------- */
+/* Each line is a tiny white bar. JS places it on the edge of the Save button
+   and sets --angle, the direction it shoots out in. */
+.pin-burst-line {
+  position: absolute;
+  width: 10px;
+  height: 2.5px;
+  margin-top: -1.25px; /* center the bar's thickness on its anchor point */
+  border-radius: 2px;
+  background-color: var(--pin-white);
+  pointer-events: none; /* clicks pass straight through to the button */
+  transform-origin: left center;
+  animation: pin-burst 950ms ease-out forwards;
+}
+
+@keyframes pin-burst {
+  0% {
+    opacity: 1;
+    transform: rotate(var(--angle)) translateX(2px) scaleX(0.4);
+  }
+  30% {
+    opacity: 1;
+    transform: rotate(var(--angle)) translateX(8px) scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(var(--angle)) translateX(16px) scaleX(0.6);
+  }
+}
+
+/* ------------------- Share button ------------------- */
+.pin .pin-share {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background-color: var(--pin-white);
+}
+
+.pin-share-icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: var(--pin-icon);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ------------------- The "..." button under the card ------------------- */
+.pin .pin-more {
+  display: block;
+  margin-left: auto;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.pin-more svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  fill: var(--pin-icon);
+}

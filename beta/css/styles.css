@@ -1,6 +1,6 @@
 /*
   AI Use Disclosure
-  Copied from my Alpha Description page (alpha/css/styles.css) so the beta page matches it. Claude changed the video's aspect ratio for the beta video and let the comparison images wrap, since there are four of them.
+  Copied from my Alpha Description page (alpha/css/styles.css) so the beta page matches it. Claude changed the video's aspect ratio for the beta video and let the comparison images wrap, since there are four of them. For the Beta Build, Claude widened the page column and gave the Rules and Feedback boxes twice the width of the others, so the longer breakdown text spreads out on large monitors.
   This stylesheet was written by Claude (Anthropic's AI assistant), working from my prompt.
  
   My prompt to Claude:
@@ -73,7 +73,7 @@ body {
 
 /* Centered page column */
 main {
-  max-width: 1400px;
+  max-width: 1680px; /* widened from 1400px for the beta so the four breakdown boxes are less tall */
   margin: 0 auto;
   padding: 40px 20px;
 }
@@ -219,7 +219,9 @@ header p {
 
 @media (min-width: 1100px) {
   .breakdown {
-    grid-template-columns: repeat(4, 1fr);
+    /* Rules and Feedback hold most of the text, so they get twice the width
+       of Triggers and Loops and Modes */
+    grid-template-columns: 1fr 2fr 2fr 1fr;
   }
 }
 
