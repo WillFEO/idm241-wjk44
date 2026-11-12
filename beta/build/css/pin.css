@@ -1,6 +1,6 @@
 /*
   AI Use Disclosure
-  The base of this stylesheet (positioning, the button reset, sizes, and color variables) comes from my Alpha Build pin.css, which I coded myself with Claude's assistance. For the beta, Claude (Anthropic's AI assistant) helped to add the transitions, the board selector background, the Save hover/pressed/saved states, the "Saved!" pop, and the burst lines. Claude also wrote a guide explaining every new piece to help me solidify my full understanding, which I studied.
+  The base of this stylesheet (positioning, the button reset, sizes, and color variables) comes from my Alpha Build pin.css, which I coded myself with Claude's assistance. For the beta, Claude (Anthropic's AI assistant) helped to add the transitions, the board selector background, the Save hover/pressed/saved/saved-hover states, the "Saved!" pop, and the burst lines. Claude also wrote a guide explaining every new piece to help me solidify my full understanding, which I studied.
 */
 
 /* Colors and timings live on .pin (not :root) so the pin is self-contained
@@ -9,6 +9,7 @@
   --pin-red: #e60023;
   --pin-red-hover: #ad081b;
   --pin-saved: #333333;
+  --pin-saved-hover: #111111;
   --pin-white: #ffffff;
   --pin-icon: #111111;
   --pin-overlay-top: rgba(0, 0, 0, 0.4);
@@ -152,6 +153,13 @@
    Listed after :hover so the button stays dark grey while hovered. */
 .pin .pin-save.is-saved {
   background-color: var(--pin-saved);
+}
+
+/* Saved Hover ON: #333333 -> #111111. Listed after .is-saved so it wins
+   while the cursor is on a saved button. The 150ms background-color
+   transition on .pin-save handles the fade both ways. */
+.pin .pin-save.is-saved:hover {
+  background-color: var(--pin-saved-hover);
 }
 
 /* The text inside the button. inline-block so it can be scaled. */

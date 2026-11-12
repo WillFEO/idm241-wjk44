@@ -2,7 +2,7 @@
 <!--
   AI Use Disclosure
   I built this page with help from Claude (Anthropic's AI assistant).
-  - Pin markup: reused from my Alpha Build, which I coded myself with Claude's assistance. For the beta, Claude wrapped the "Save" text in a span (so the text can pop and fade on its own) and placed two copies of the pin side by side, matching my Figma prototype.
+  - Pin markup: reused from my Alpha Build, which I coded myself with Claude's assistance. For the beta, Claude wrapped the "Save" text in a span (so the text can pop and fade on its own) and placed two pins side by side, matching my Figma prototype. Each pin uses a different image so they read as two separate objects.
   - Interactions: Claude helped me write the new CSS (css/pin.css) and JavaScript (js/pin.js), and wrote a detailed guide explaining how each piece works, which I studied in detail to ensure understanding. All code has been reviewed and edited by me, and I wrote the microinteraction breakdown below.
   - Breakdown sections: copied from my Beta Description page, which Claude drafted from my direction and I reviewed and edited.
 -->
@@ -64,8 +64,8 @@
             <div class="pin-card">
               <img
                 class="pin-image"
-                src="images/pin.jpg"
-                alt='A Pinterest pin of blue text that says, "What&apos;s the best that could happen?"'
+                src="images/pin-2.jpg"
+                alt="A Pinterest pin of a framed blue artwork with tall, overlapping white serif letters made from strips of tape."
               />
               <div class="pin-overlay">
                 <button class="pin-board" type="button">
@@ -105,32 +105,38 @@
         <h2>The Microinteraction Breakdown</h2>
         <section>
           <h3>Triggers</h3>
-          <p class="label">Pin</p>
+          <p class="label">Pin Card</p>
           <ul>
             <li>Hover ON</li>
             <li>Hover OFF</li>
           </ul>
-          <p class="label">Board Selector</p>
+          <p class="label">Board Selector (the "Profile" button)</p>
           <ul>
             <li>Hover ON</li>
             <li>Hover OFF</li>
           </ul>
-          <p class="label">"Save" Button</p>
+          <p class="label">"Save" Button (Unsaved)</p>
           <ul>
             <li>Hover ON</li>
             <li>Hover OFF</li>
             <li>Toggle ON Click</li>
+          </ul>
+          <p class="label">"Save" Button (Saved)</p>
+          <ul>
+            <li>Hover ON</li>
+            <li>Hover OFF</li>
             <li>Toggle OFF Click</li>
           </ul>
         </section>
         <section>
           <h3>Rules</h3>
-          <p class="label">Pin</p>
+          <p class="label">Pin Card</p>
           <ul>
             <li>Hover ON</li>
             <ul>
               <li>
-                The default arrow cursor turns into the pointing-finger hand
+                The default arrow cursor instantly swaps to the pointing-finger
+                hand
               </li>
               <li>
                 A vertical gradient overlay fades in over 150ms, 40% opacity at
@@ -140,25 +146,26 @@
               <li>
                 Three buttons fade in with the overlay: a board selector in the
                 top left (#FFFFFF white text and chevron on a 30% black
-                background, rgba(0, 0, 0, 0.3)), a #E60023 red "Save" button
-                with #FFFFFF white text in the top right, and a #FFFFFF white
-                Share button with a #111111 black icon in the bottom right
+                background, rgba(0, 0, 0, 0.3)), a "Save" button with #FFFFFF
+                white text in the top right (#E60023 red, or #333333 dark grey
+                reading "Saved" if the pin is already saved), and a #FFFFFF
+                white Share button with a #111111 black icon in the bottom right
               </li>
             </ul>
             <li>Hover OFF</li>
             <ul>
               <li>
-                The pointing-finger hand cursor turns back into the default
-                arrow
+                The pointing-finger hand cursor instantly swaps back to the
+                default arrow
               </li>
               <li>The vertical gradient overlay fades out over 150ms</li>
               <li>
-                The buttons fade out with the overlay, returning the pin to its
-                original state
+                The buttons fade out with the overlay, returning the pin card to
+                its original state
               </li>
             </ul>
           </ul>
-          <p class="label">Board Selector</p>
+          <p class="label">Board Selector (the "Profile" button)</p>
           <ul>
             <li>Hover ON</li>
             <ul>
@@ -175,7 +182,7 @@
               </li>
             </ul>
           </ul>
-          <p class="label">"Save" Button</p>
+          <p class="label">"Save" Button (Unsaved)</p>
           <ul>
             <li>Hover ON</li>
             <ul>
@@ -194,25 +201,42 @@
                 back over 150ms on release
               </li>
               <li>
-                The text changes to "Saved!" with an 800ms spring transition,
-                and pops to 115% size, settling back to 100% over 300ms
+                The text springs into "Saved!" over 800ms: it pops up to 115%
+                size in the first 160ms, then settles back to 100% over the next
+                300ms with a slight wobble
               </li>
               <li>
                 Six short #FFFFFF white lines burst out from the button and fade
                 away over 950ms
               </li>
               <li>
-                The button fades to #333333 dark grey and widens to fit the text
-                over 150ms, staying anchored to the top right corner
+                The button fades from #AD081B red to #111111 near-black (the
+                Saved hover color, since the cursor is still on it) and widens
+                to fit the text over 150ms, staying anchored to the top right
+                corner
               </li>
               <li>
                 After 1 second, "Saved!" fades into "Saved" over 150ms, and the
-                button narrows to fit the text over 150ms.
+                button narrows to fit the text over 150ms
               </li>
               <li>
                 Backend: the pin would be added to the board named in the board
                 selector ("Profile") in the database
               </li>
+            </ul>
+          </ul>
+          <p class="label">"Save" Button (Saved)</p>
+          <ul>
+            <li>Hover ON</li>
+            <ul>
+              <li>
+                The button darkens from #333333 dark grey to #111111 near-black
+                over 150ms
+              </li>
+            </ul>
+            <li>Hover OFF</li>
+            <ul>
+              <li>The button fades back to #333333 dark grey over 150ms</li>
             </ul>
             <li>Toggle OFF Click</li>
             <ul>
@@ -225,8 +249,8 @@
                 150ms
               </li>
               <li>
-                The button fades from #333333 dark grey to #AD081B red over
-                150ms
+                The button fades from #111111 near-black to #AD081B red (the
+                Unsaved hover color, since the cursor is still on it) over 150ms
               </li>
               <li>
                 Backend: the pin would be removed from that board in the
@@ -246,12 +270,13 @@
         </section>
         <section>
           <h3>Feedback</h3>
-          <p class="label">Pin</p>
+          <p class="label">Pin Card</p>
           <ul>
             <li>Hover ON</li>
             <ul>
               <li>
-                The default arrow cursor turns into the pointing-finger hand
+                The default arrow cursor instantly swaps to the pointing-finger
+                hand
               </li>
               <li>
                 A vertical gradient overlay fades in over 150ms, 40% opacity at
@@ -261,25 +286,26 @@
               <li>
                 Three buttons fade in with the overlay: a board selector in the
                 top left (#FFFFFF white text and chevron on a 30% black
-                background, rgba(0, 0, 0, 0.3)), a #E60023 red "Save" button
-                with #FFFFFF white text in the top right, and a #FFFFFF white
-                Share button with a #111111 black icon in the bottom right
+                background, rgba(0, 0, 0, 0.3)), a "Save" button with #FFFFFF
+                white text in the top right (#E60023 red, or #333333 dark grey
+                reading "Saved" if the pin is already saved), and a #FFFFFF
+                white Share button with a #111111 black icon in the bottom right
               </li>
             </ul>
             <li>Hover OFF</li>
             <ul>
               <li>
-                The pointing-finger hand cursor turns back into the default
-                arrow
+                The pointing-finger hand cursor instantly swaps back to the
+                default arrow
               </li>
               <li>The vertical gradient overlay fades out over 150ms</li>
               <li>
-                The buttons fade out with the overlay, returning the pin to its
-                original state
+                The buttons fade out with the overlay, returning the pin card to
+                its original state
               </li>
             </ul>
           </ul>
-          <p class="label">Board Selector</p>
+          <p class="label">Board Selector (the "Profile" button)</p>
           <ul>
             <li>Hover ON</li>
             <ul>
@@ -296,7 +322,7 @@
               </li>
             </ul>
           </ul>
-          <p class="label">"Save" Button</p>
+          <p class="label">"Save" Button (Unsaved)</p>
           <ul>
             <li>Hover ON</li>
             <ul>
@@ -315,21 +341,38 @@
                 back over 150ms on release
               </li>
               <li>
-                The text changes to "Saved!" with an 800ms spring transition,
-                and pops to 115% size, settling back to 100% over 300ms
+                The text springs into "Saved!" over 800ms: it pops up to 115%
+                size in the first 160ms, then settles back to 100% over the next
+                300ms with a slight wobble
               </li>
               <li>
                 Six short #FFFFFF white lines burst out from the button and fade
                 away over 950ms
               </li>
               <li>
-                The button fades to #333333 dark grey and widens to fit the text
-                over 150ms, staying anchored to the top right corner
+                The button fades from #AD081B red to #111111 near-black (the
+                Saved hover color, since the cursor is still on it) and widens
+                to fit the text over 150ms, staying anchored to the top right
+                corner
               </li>
               <li>
                 After 1 second, "Saved!" fades into "Saved" over 150ms, and the
-                button narrows to fit the text over 150ms.
+                button narrows to fit the text over 150ms
               </li>
+            </ul>
+          </ul>
+          <p class="label">"Save" Button (Saved)</p>
+          <ul>
+            <li>Hover ON</li>
+            <ul>
+              <li>
+                The button darkens from #333333 dark grey to #111111 near-black
+                over 150ms
+              </li>
+            </ul>
+            <li>Hover OFF</li>
+            <ul>
+              <li>The button fades back to #333333 dark grey over 150ms</li>
             </ul>
             <li>Toggle OFF Click</li>
             <ul>
@@ -342,8 +385,8 @@
                 150ms
               </li>
               <li>
-                The button fades from #333333 dark grey to #AD081B red over
-                150ms
+                The button fades from #111111 near-black to #AD081B red (the
+                Unsaved hover color, since the cursor is still on it) over 150ms
               </li>
             </ul>
           </ul>
