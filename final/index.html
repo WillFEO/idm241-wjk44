@@ -1,0 +1,1179 @@
+<!doctype html>
+<!--
+  AI Use Disclosure
+  The page structure, class names, and stylesheet (css/styles.css) are copied from my Beta Description page, which Claude (Anthropic's AI assistant) styled from my prompt for the Alpha.
+  Claude reviewed the text content at my direction, and I reviewed and edited everything myself. Every value comes from my coded prototype.
+  Visualization: Claude wrote the coded prototype from my direction, building on my Beta Build. I recorded the video myself with my own cursor, and Claude cut the still images from it, painting the other two pins out of each still so only the blue pin and its open menu show.
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IDM241 Final Description</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Microinteractions Final: The Pinterest "Pin" Card</h1>
+        <p>
+          <b>Objects:</b> A pin card in the Pinterest home feed/search results
+          grid (logged-in user), its board selector (the "Profile" button in the
+          top left), "Save" button, "Visit site" button, Share button, and "..."
+          button, and the menus that the board selector, Share, and "..."
+          buttons open.
+        </p>
+        <p>
+          <b>Scope:</b> Hovering on and off of the pin card and each of its
+          buttons, clicking "Save" to save and unsave the pin, clicking the
+          board selector, Share, and "..." buttons to open and close their
+          menus, and clicking outside an open menu to close it. Inside the
+          menus, only scrolling the board list is included; the boards, search
+          fields, share options, and menu options are shown but are not part of
+          this scope.
+        </p>
+        <div class="comparison">
+          <img
+            src="images/pin-hover.png"
+            alt='The redesigned pin card in its hover state, with the board selector, red "Save" button, "Visit site" button, and Share button showing over the gradient.'
+          />
+          <img
+            src="images/board-open.png"
+            alt="The board selector clicked open: the button has darkened with its chevron pointing up, and the board list menu has sprung open below it."
+          />
+        </div>
+      </header>
+      <hr />
+      <article class="intro">
+        <section>
+          <h2>The Link</h2>
+          <p>
+            <a
+              href="https://www.pinterest.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >https://www.pinterest.com/</a
+            >
+          </p>
+          <p>
+            This link will open in a new tab. You will need a free account to
+            view the content and microinteractions.
+          </p>
+        </section>
+        <section>
+          <h2>Locating the Object</h2>
+          <p>
+            Once you are logged in, move your mouse onto any pin, then click its
+            board selector, Share button, or "..." button. In the current
+            version, these menus appear and disappear instantly, with no
+            transitions.
+          </p>
+        </section>
+      </article>
+      <hr />
+      <article class="breakdown">
+        <h2>The Microinteraction Breakdown</h2>
+        <section>
+          <h3>Triggers</h3>
+          <div class="groups groups--cols">
+            <div class="col">
+              <div class="group">
+                <p class="label">Pin Card</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <li>Hover OFF</li>
+                </ul>
+              </div>
+              <div class="group">
+                <p class="label">"Save" Button (Unsaved)</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <li>Hover OFF</li>
+                  <li>Toggle ON Click</li>
+                </ul>
+              </div>
+              <div class="group">
+                <p class="label">"Save" Button (Saved)</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <li>Hover OFF</li>
+                  <li>Toggle OFF Click</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col">
+              <div class="group">
+                <p class="label">Board Selector (the "Profile" button)</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <li>Hover OFF</li>
+                  <li>Toggle ON Click</li>
+                  <li>Toggle OFF Click</li>
+                  <li>Click Outside</li>
+                </ul>
+              </div>
+              <div class="group">
+                <p class="label">Board List Menu</p>
+                <ul>
+                  <li>Scroll</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col">
+              <div class="group">
+                <p class="label">"Visit site" Button</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <li>Hover OFF</li>
+                </ul>
+              </div>
+              <div class="group">
+                <p class="label">Share Button</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <li>Hover OFF</li>
+                  <li>Toggle ON Click</li>
+                  <li>Toggle OFF Click</li>
+                  <li>Click Outside</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col">
+              <div class="group">
+                <p class="label">"..." (More Options) Button</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <li>Hover OFF</li>
+                  <li>Toggle ON Click</li>
+                  <li>Toggle OFF Click</li>
+                  <li>Click Outside</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <h3>Rules</h3>
+          <div class="groups groups--cols">
+            <div class="col">
+              <div class="group">
+                <p class="label">Pin Card</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <ul>
+                    <li>
+                      The default arrow cursor instantly swaps to the
+                      pointing-finger hand
+                    </li>
+                    <li>
+                      A vertical gradient overlay fades in over 150ms, 40%
+                      opacity at the top (rgba(0, 0, 0, 0.4)) and fading to 5%
+                      at the bottom (rgba(0, 0, 0, 0.05))
+                    </li>
+                    <li>
+                      The buttons fade in with the overlay over 150ms: the board
+                      selector in the top left (#FFFFFF white text and chevron
+                      on a 30% black background, rgba(0, 0, 0, 0.3)), the "Save"
+                      button in the top right (#E60023 red, or #333333 dark grey
+                      reading "Saved" if the pin is already saved), the "Visit
+                      site" button in the bottom left on pins that link to a
+                      website, and the Share button in the bottom right (both
+                      #FFFFFF white with #111111 black icons and text)
+                    </li>
+                  </ul>
+                  <li>Hover OFF</li>
+                  <ul>
+                    <li>
+                      The pointing-finger hand cursor instantly swaps back to
+                      the default arrow
+                    </li>
+                    <li>
+                      The vertical gradient overlay and its buttons fade out
+                      over 150ms, returning the pin card to its original state
+                    </li>
+                    <li>
+                      If the pin's board list or Share menu is open, the overlay
+                      and its buttons stay visible until the menu closes
+                    </li>
+                  </ul>
+                </ul>
+              </div>
+              <div class="group">
+                <p class="label">"Save" Button (Unsaved)</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <ul>
+                    <li>
+                      The button darkens from #E60023 red to #AD081B red over
+                      150ms
+                    </li>
+                  </ul>
+                  <li>Hover OFF</li>
+                  <ul>
+                    <li>The button fades back to #E60023 red over 150ms</li>
+                  </ul>
+                  <li>Toggle ON Click</li>
+                  <ul>
+                    <li>
+                      The button shrinks to 95% over 100ms while pressed and
+                      springs back over 150ms on release
+                    </li>
+                    <li>
+                      The text springs into "Saved!" over 800ms: it pops up to
+                      115% size in the first 160ms, then settles back to 100%
+                      over the next 300ms with a slight wobble
+                    </li>
+                    <li>
+                      Six short #FFFFFF white lines burst out from the button
+                      and fade away over 950ms
+                    </li>
+                    <li>
+                      The button fades from #AD081B red to #111111 near-black
+                      (the Saved hover color, since the cursor is still on it)
+                      and widens to fit the text over 150ms, staying anchored to
+                      the top right corner
+                    </li>
+                    <li>
+                      After 1 second, "Saved!" fades into "Saved" over 150ms,
+                      and the button narrows to fit the text over 150ms
+                    </li>
+                    <li>
+                      Backend: the pin would be added to the board named in the
+                      board selector in the database
+                    </li>
+                  </ul>
+                </ul>
+              </div>
+              <div class="group">
+                <p class="label">"Save" Button (Saved)</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <ul>
+                    <li>
+                      The button darkens from #333333 dark grey to #111111
+                      near-black over 150ms
+                    </li>
+                  </ul>
+                  <li>Hover OFF</li>
+                  <ul>
+                    <li>
+                      The button fades back to #333333 dark grey over 150ms
+                    </li>
+                  </ul>
+                  <li>Toggle OFF Click</li>
+                  <ul>
+                    <li>
+                      The button shrinks to 95% over 100ms while pressed and
+                      springs back over 150ms on release
+                    </li>
+                    <li>
+                      The text fades back to "Save" and the button narrows to
+                      fit over 150ms
+                    </li>
+                    <li>
+                      The button fades from #111111 near-black to #AD081B red
+                      (the Unsaved hover color, since the cursor is still on it)
+                      over 150ms
+                    </li>
+                    <li>
+                      Backend: the pin would be removed from that board in the
+                      database
+                    </li>
+                  </ul>
+                </ul>
+              </div>
+            </div>
+            <div class="col">
+              <div class="group">
+                <p class="label">Board Selector (the "Profile" button)</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <ul>
+                    <li>
+                      The background darkens from 30% black (rgba(0, 0, 0, 0.3))
+                      to 50% black (rgba(0, 0, 0, 0.5)) over 150ms
+                    </li>
+                    <li>
+                      While the board list menu is open, the background stays
+                      75% black (rgba(0, 0, 0, 0.75)) instead
+                    </li>
+                  </ul>
+                  <li>Hover OFF</li>
+                  <ul>
+                    <li>The background fades back to 30% black over 150ms</li>
+                    <li>
+                      While the board list menu is open, the background stays
+                      75% black instead
+                    </li>
+                  </ul>
+                  <li>Toggle ON Click</li>
+                  <ul>
+                    <li>
+                      The button shrinks to 95% over 100ms while pressed and
+                      springs back over 150ms on release
+                    </li>
+                    <li>
+                      The background darkens from 50% black to 75% black
+                      (rgba(0, 0, 0, 0.75)) and the chevron rotates 180 degrees
+                      to point up, both over 150ms
+                    </li>
+                    <li>
+                      If a different menu is already open, it closes first by
+                      fading out and shrinking to 85% size over 150ms
+                    </li>
+                    <li>
+                      The board list menu appears 8px below the button, centered
+                      on it and kept at least 8px from the edges of the screen.
+                      If there isn't room below and there is more room above, it
+                      appears 8px above the button instead
+                    </li>
+                    <li>
+                      The board list menu fades in over 150ms while springing
+                      from 85% to 100% size over 300ms, growing out of the
+                      button with a slight overshoot
+                    </li>
+                    <li>
+                      Starting 100ms in, the board list menu's content fades in
+                      and drops 6px into place over 200ms, so it looks like it
+                      "lands"
+                    </li>
+                    <li>
+                      While the board list menu is open, the pin's overlay and
+                      its buttons stay visible, even if the cursor leaves the
+                      pin card
+                    </li>
+                  </ul>
+                  <li>Toggle OFF Click</li>
+                  <ul>
+                    <li>
+                      The button shrinks to 95% over 100ms while pressed and
+                      springs back over 150ms on release
+                    </li>
+                    <li>
+                      The background fades back to 50% black (the hover color,
+                      since the cursor is still on it) and the chevron rotates
+                      back down, both over 150ms
+                    </li>
+                    <li>
+                      The board list menu fades out and shrinks back to 85% size
+                      over 150ms, with no spring
+                    </li>
+                  </ul>
+                  <li>Click Outside</li>
+                  <ul>
+                    <li>
+                      Clicking anywhere outside the board list menu and the
+                      button closes the menu
+                    </li>
+                    <li>
+                      The board list menu fades out and shrinks back to 85% size
+                      over 150ms, with no spring
+                    </li>
+                    <li>
+                      The background fades back to 30% black and the chevron
+                      rotates back down, both over 150ms
+                    </li>
+                    <li>
+                      If the cursor is not on the pin card, the overlay and its
+                      buttons fade out over 150ms
+                    </li>
+                  </ul>
+                </ul>
+              </div>
+              <div class="group">
+                <p class="label">Board List Menu</p>
+                <ul>
+                  <li>Scroll</li>
+                  <ul>
+                    <li>
+                      The boards under "Save to board" and "Suggestions" scroll
+                      up and down inside a section up to 280px tall, following
+                      the mouse wheel or trackpad with the browser's own
+                      scrolling (no added animation)
+                    </li>
+                    <li>
+                      The "Save" title, search field, and "Create board" button
+                      stay in place
+                    </li>
+                    <li>
+                      The scrollbar on the right of the section moves to show
+                      how far down the list is scrolled
+                    </li>
+                  </ul>
+                </ul>
+              </div>
+            </div>
+            <div class="col">
+              <div class="group">
+                <p class="label">"Visit site" Button</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <ul>
+                    <li>
+                      The button darkens from #FFFFFF white to #E9E9E9 light
+                      grey over 150ms
+                    </li>
+                  </ul>
+                  <li>Hover OFF</li>
+                  <ul>
+                    <li>The button fades back to #FFFFFF white over 150ms</li>
+                  </ul>
+                </ul>
+              </div>
+              <div class="group">
+                <p class="label">Share Button</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <ul>
+                    <li>
+                      The button darkens from #FFFFFF white to #E9E9E9 light
+                      grey over 150ms
+                    </li>
+                    <li>
+                      While the Share menu is open, the button stays #111111
+                      near-black with a #FFFFFF white icon instead
+                    </li>
+                  </ul>
+                  <li>Hover OFF</li>
+                  <ul>
+                    <li>The button fades back to #FFFFFF white over 150ms</li>
+                    <li>
+                      While the Share menu is open, the button stays #111111
+                      near-black with a #FFFFFF white icon instead
+                    </li>
+                  </ul>
+                  <li>Toggle ON Click</li>
+                  <ul>
+                    <li>
+                      The button shrinks to 95% over 100ms while pressed and
+                      springs back over 150ms on release
+                    </li>
+                    <li>
+                      The button darkens from #E9E9E9 light grey to #111111
+                      near-black and its icon fades from #111111 black to
+                      #FFFFFF white, both over 150ms
+                    </li>
+                    <li>
+                      If a different menu is already open, it closes first by
+                      fading out and shrinking to 85% size over 150ms
+                    </li>
+                    <li>
+                      The Share menu appears 8px below the button, centered on
+                      it and kept at least 8px from the edges of the screen. If
+                      there isn't room below and there is more room above, it
+                      appears 8px above the button instead
+                    </li>
+                    <li>
+                      The Share menu fades in over 150ms while springing from
+                      85% to 100% size over 300ms, growing out of the button
+                      with a slight overshoot
+                    </li>
+                    <li>
+                      Starting 100ms in, the Share menu's content fades in and
+                      drops 6px into place over 200ms, so it looks like it
+                      "lands"
+                    </li>
+                    <li>
+                      While the Share menu is open, the pin's overlay and its
+                      buttons stay visible, even if the cursor leaves the pin
+                      card
+                    </li>
+                  </ul>
+                  <li>Toggle OFF Click</li>
+                  <ul>
+                    <li>
+                      The button shrinks to 95% over 100ms while pressed and
+                      springs back over 150ms on release
+                    </li>
+                    <li>
+                      The button fades back to #E9E9E9 light grey (the hover
+                      color, since the cursor is still on it) and its icon back
+                      to #111111 black, both over 150ms
+                    </li>
+                    <li>
+                      The Share menu fades out and shrinks back to 85% size over
+                      150ms, with no spring
+                    </li>
+                  </ul>
+                  <li>Click Outside</li>
+                  <ul>
+                    <li>
+                      Clicking anywhere outside the Share menu and the button
+                      closes the menu
+                    </li>
+                    <li>
+                      The Share menu fades out and shrinks back to 85% size over
+                      150ms, with no spring
+                    </li>
+                    <li>
+                      The button fades back to #FFFFFF white and its icon back
+                      to #111111 black, both over 150ms
+                    </li>
+                    <li>
+                      If the cursor is not on the pin card, the overlay and its
+                      buttons fade out over 150ms
+                    </li>
+                  </ul>
+                </ul>
+              </div>
+            </div>
+            <div class="col">
+              <div class="group">
+                <p class="label">"..." (More Options) Button</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <ul>
+                    <li>
+                      A #E9E9E9 light grey background fades in behind the dots
+                      over 150ms
+                    </li>
+                    <li>
+                      While the "..." menu is open, the button stays #111111
+                      near-black with #FFFFFF white dots instead
+                    </li>
+                  </ul>
+                  <li>Hover OFF</li>
+                  <ul>
+                    <li>The background fades away over 150ms</li>
+                    <li>
+                      While the "..." menu is open, the button stays #111111
+                      near-black with #FFFFFF white dots instead
+                    </li>
+                  </ul>
+                  <li>Toggle ON Click</li>
+                  <ul>
+                    <li>
+                      The button shrinks to 95% over 100ms while pressed and
+                      springs back over 150ms on release
+                    </li>
+                    <li>
+                      The background darkens from #E9E9E9 light grey to #111111
+                      near-black and the dots fade from #111111 black to #FFFFFF
+                      white, both over 150ms
+                    </li>
+                    <li>
+                      If a different menu is already open, it closes first by
+                      fading out and shrinking to 85% size over 150ms
+                    </li>
+                    <li>
+                      The "..." menu appears 8px below the button, centered on
+                      it and kept at least 8px from the edges of the screen. If
+                      there isn't room below and there is more room above, it
+                      appears 8px above the button instead
+                    </li>
+                    <li>
+                      The "..." menu fades in over 150ms while springing from
+                      85% to 100% size over 300ms, growing out of the button
+                      with a slight overshoot
+                    </li>
+                    <li>
+                      Starting 100ms in, the "..." menu's content fades in and
+                      drops 6px into place over 200ms, so it looks like it
+                      "lands"
+                    </li>
+                    <li>
+                      While the "..." menu is open, the pin's overlay and its
+                      buttons do not stay visible; they show and hide with the
+                      pin card's hover as usual
+                    </li>
+                  </ul>
+                  <li>Toggle OFF Click</li>
+                  <ul>
+                    <li>
+                      The button shrinks to 95% over 100ms while pressed and
+                      springs back over 150ms on release
+                    </li>
+                    <li>
+                      The background fades back to #E9E9E9 light grey (the hover
+                      color, since the cursor is still on it) and the dots back
+                      to #111111 black, both over 150ms
+                    </li>
+                    <li>
+                      The "..." menu fades out and shrinks back to 85% size over
+                      150ms, with no spring
+                    </li>
+                  </ul>
+                  <li>Click Outside</li>
+                  <ul>
+                    <li>
+                      Clicking anywhere outside the "..." menu and the button
+                      closes the menu
+                    </li>
+                    <li>
+                      The "..." menu fades out and shrinks back to 85% size over
+                      150ms, with no spring
+                    </li>
+                    <li>
+                      The background fades away and the dots fade back to
+                      #111111 black, both over 150ms
+                    </li>
+                    <li>
+                      The pin's overlay is not affected, since the "..." menu
+                      does not keep it visible
+                    </li>
+                  </ul>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <p>
+            The backend updates are hypothetical, since this redesign is a
+            concept and is not connected to Pinterest.
+          </p>
+        </section>
+        <section>
+          <h3>Feedback</h3>
+          <div class="groups groups--cols">
+            <div class="col">
+              <div class="group">
+                <p class="label">Pin Card</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <ul>
+                    <li>
+                      The default arrow cursor instantly swaps to the
+                      pointing-finger hand
+                    </li>
+                    <li>
+                      A vertical gradient overlay fades in over 150ms, 40%
+                      opacity at the top (rgba(0, 0, 0, 0.4)) and fading to 5%
+                      at the bottom (rgba(0, 0, 0, 0.05))
+                    </li>
+                    <li>
+                      The buttons fade in with the overlay over 150ms: the board
+                      selector in the top left (#FFFFFF white text and chevron
+                      on a 30% black background, rgba(0, 0, 0, 0.3)), the "Save"
+                      button in the top right (#E60023 red, or #333333 dark grey
+                      reading "Saved" if the pin is already saved), the "Visit
+                      site" button in the bottom left on pins that link to a
+                      website, and the Share button in the bottom right (both
+                      #FFFFFF white with #111111 black icons and text)
+                    </li>
+                  </ul>
+                  <li>Hover OFF</li>
+                  <ul>
+                    <li>
+                      The pointing-finger hand cursor instantly swaps back to
+                      the default arrow
+                    </li>
+                    <li>
+                      The vertical gradient overlay and its buttons fade out
+                      over 150ms, returning the pin card to its original state
+                    </li>
+                    <li>
+                      If the pin's board list or Share menu is open, the overlay
+                      and its buttons stay visible until the menu closes
+                    </li>
+                  </ul>
+                </ul>
+              </div>
+              <div class="group">
+                <p class="label">"Save" Button (Unsaved)</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <ul>
+                    <li>
+                      The button darkens from #E60023 red to #AD081B red over
+                      150ms
+                    </li>
+                  </ul>
+                  <li>Hover OFF</li>
+                  <ul>
+                    <li>The button fades back to #E60023 red over 150ms</li>
+                  </ul>
+                  <li>Toggle ON Click</li>
+                  <ul>
+                    <li>
+                      The button shrinks to 95% over 100ms while pressed and
+                      springs back over 150ms on release
+                    </li>
+                    <li>
+                      The text springs into "Saved!" over 800ms: it pops up to
+                      115% size in the first 160ms, then settles back to 100%
+                      over the next 300ms with a slight wobble
+                    </li>
+                    <li>
+                      Six short #FFFFFF white lines burst out from the button
+                      and fade away over 950ms
+                    </li>
+                    <li>
+                      The button fades from #AD081B red to #111111 near-black
+                      (the Saved hover color, since the cursor is still on it)
+                      and widens to fit the text over 150ms, staying anchored to
+                      the top right corner
+                    </li>
+                    <li>
+                      After 1 second, "Saved!" fades into "Saved" over 150ms,
+                      and the button narrows to fit the text over 150ms
+                    </li>
+                  </ul>
+                </ul>
+              </div>
+              <div class="group">
+                <p class="label">"Save" Button (Saved)</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <ul>
+                    <li>
+                      The button darkens from #333333 dark grey to #111111
+                      near-black over 150ms
+                    </li>
+                  </ul>
+                  <li>Hover OFF</li>
+                  <ul>
+                    <li>
+                      The button fades back to #333333 dark grey over 150ms
+                    </li>
+                  </ul>
+                  <li>Toggle OFF Click</li>
+                  <ul>
+                    <li>
+                      The button shrinks to 95% over 100ms while pressed and
+                      springs back over 150ms on release
+                    </li>
+                    <li>
+                      The text fades back to "Save" and the button narrows to
+                      fit over 150ms
+                    </li>
+                    <li>
+                      The button fades from #111111 near-black to #AD081B red
+                      (the Unsaved hover color, since the cursor is still on it)
+                      over 150ms
+                    </li>
+                  </ul>
+                </ul>
+              </div>
+            </div>
+            <div class="col">
+              <div class="group">
+                <p class="label">Board Selector (the "Profile" button)</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <ul>
+                    <li>
+                      The background darkens from 30% black (rgba(0, 0, 0, 0.3))
+                      to 50% black (rgba(0, 0, 0, 0.5)) over 150ms
+                    </li>
+                    <li>
+                      While the board list menu is open, the background stays
+                      75% black (rgba(0, 0, 0, 0.75)) instead
+                    </li>
+                  </ul>
+                  <li>Hover OFF</li>
+                  <ul>
+                    <li>The background fades back to 30% black over 150ms</li>
+                    <li>
+                      While the board list menu is open, the background stays
+                      75% black instead
+                    </li>
+                  </ul>
+                  <li>Toggle ON Click</li>
+                  <ul>
+                    <li>
+                      The button shrinks to 95% over 100ms while pressed and
+                      springs back over 150ms on release
+                    </li>
+                    <li>
+                      The background darkens from 50% black to 75% black
+                      (rgba(0, 0, 0, 0.75)) and the chevron rotates 180 degrees
+                      to point up, both over 150ms
+                    </li>
+                    <li>
+                      If a different menu is already open, it closes first by
+                      fading out and shrinking to 85% size over 150ms
+                    </li>
+                    <li>
+                      The board list menu appears 8px below the button, centered
+                      on it and kept at least 8px from the edges of the screen.
+                      If there isn't room below and there is more room above, it
+                      appears 8px above the button instead
+                    </li>
+                    <li>
+                      The board list menu fades in over 150ms while springing
+                      from 85% to 100% size over 300ms, growing out of the
+                      button with a slight overshoot
+                    </li>
+                    <li>
+                      Starting 100ms in, the board list menu's content fades in
+                      and drops 6px into place over 200ms, so it looks like it
+                      "lands"
+                    </li>
+                    <li>
+                      While the board list menu is open, the pin's overlay and
+                      its buttons stay visible, even if the cursor leaves the
+                      pin card
+                    </li>
+                  </ul>
+                  <li>Toggle OFF Click</li>
+                  <ul>
+                    <li>
+                      The button shrinks to 95% over 100ms while pressed and
+                      springs back over 150ms on release
+                    </li>
+                    <li>
+                      The background fades back to 50% black (the hover color,
+                      since the cursor is still on it) and the chevron rotates
+                      back down, both over 150ms
+                    </li>
+                    <li>
+                      The board list menu fades out and shrinks back to 85% size
+                      over 150ms, with no spring
+                    </li>
+                  </ul>
+                  <li>Click Outside</li>
+                  <ul>
+                    <li>
+                      Clicking anywhere outside the board list menu and the
+                      button closes the menu
+                    </li>
+                    <li>
+                      The board list menu fades out and shrinks back to 85% size
+                      over 150ms, with no spring
+                    </li>
+                    <li>
+                      The background fades back to 30% black and the chevron
+                      rotates back down, both over 150ms
+                    </li>
+                    <li>
+                      If the cursor is not on the pin card, the overlay and its
+                      buttons fade out over 150ms
+                    </li>
+                  </ul>
+                </ul>
+              </div>
+              <div class="group">
+                <p class="label">Board List Menu</p>
+                <ul>
+                  <li>Scroll</li>
+                  <ul>
+                    <li>
+                      The boards under "Save to board" and "Suggestions" scroll
+                      up and down inside a section up to 280px tall, following
+                      the mouse wheel or trackpad with the browser's own
+                      scrolling (no added animation)
+                    </li>
+                    <li>
+                      The "Save" title, search field, and "Create board" button
+                      stay in place
+                    </li>
+                    <li>
+                      The scrollbar on the right of the section moves to show
+                      how far down the list is scrolled
+                    </li>
+                  </ul>
+                </ul>
+              </div>
+            </div>
+            <div class="col">
+              <div class="group">
+                <p class="label">"Visit site" Button</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <ul>
+                    <li>
+                      The button darkens from #FFFFFF white to #E9E9E9 light
+                      grey over 150ms
+                    </li>
+                  </ul>
+                  <li>Hover OFF</li>
+                  <ul>
+                    <li>The button fades back to #FFFFFF white over 150ms</li>
+                  </ul>
+                </ul>
+              </div>
+              <div class="group">
+                <p class="label">Share Button</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <ul>
+                    <li>
+                      The button darkens from #FFFFFF white to #E9E9E9 light
+                      grey over 150ms
+                    </li>
+                    <li>
+                      While the Share menu is open, the button stays #111111
+                      near-black with a #FFFFFF white icon instead
+                    </li>
+                  </ul>
+                  <li>Hover OFF</li>
+                  <ul>
+                    <li>The button fades back to #FFFFFF white over 150ms</li>
+                    <li>
+                      While the Share menu is open, the button stays #111111
+                      near-black with a #FFFFFF white icon instead
+                    </li>
+                  </ul>
+                  <li>Toggle ON Click</li>
+                  <ul>
+                    <li>
+                      The button shrinks to 95% over 100ms while pressed and
+                      springs back over 150ms on release
+                    </li>
+                    <li>
+                      The button darkens from #E9E9E9 light grey to #111111
+                      near-black and its icon fades from #111111 black to
+                      #FFFFFF white, both over 150ms
+                    </li>
+                    <li>
+                      If a different menu is already open, it closes first by
+                      fading out and shrinking to 85% size over 150ms
+                    </li>
+                    <li>
+                      The Share menu appears 8px below the button, centered on
+                      it and kept at least 8px from the edges of the screen. If
+                      there isn't room below and there is more room above, it
+                      appears 8px above the button instead
+                    </li>
+                    <li>
+                      The Share menu fades in over 150ms while springing from
+                      85% to 100% size over 300ms, growing out of the button
+                      with a slight overshoot
+                    </li>
+                    <li>
+                      Starting 100ms in, the Share menu's content fades in and
+                      drops 6px into place over 200ms, so it looks like it
+                      "lands"
+                    </li>
+                    <li>
+                      While the Share menu is open, the pin's overlay and its
+                      buttons stay visible, even if the cursor leaves the pin
+                      card
+                    </li>
+                  </ul>
+                  <li>Toggle OFF Click</li>
+                  <ul>
+                    <li>
+                      The button shrinks to 95% over 100ms while pressed and
+                      springs back over 150ms on release
+                    </li>
+                    <li>
+                      The button fades back to #E9E9E9 light grey (the hover
+                      color, since the cursor is still on it) and its icon back
+                      to #111111 black, both over 150ms
+                    </li>
+                    <li>
+                      The Share menu fades out and shrinks back to 85% size over
+                      150ms, with no spring
+                    </li>
+                  </ul>
+                  <li>Click Outside</li>
+                  <ul>
+                    <li>
+                      Clicking anywhere outside the Share menu and the button
+                      closes the menu
+                    </li>
+                    <li>
+                      The Share menu fades out and shrinks back to 85% size over
+                      150ms, with no spring
+                    </li>
+                    <li>
+                      The button fades back to #FFFFFF white and its icon back
+                      to #111111 black, both over 150ms
+                    </li>
+                    <li>
+                      If the cursor is not on the pin card, the overlay and its
+                      buttons fade out over 150ms
+                    </li>
+                  </ul>
+                </ul>
+              </div>
+            </div>
+            <div class="col">
+              <div class="group">
+                <p class="label">"..." (More Options) Button</p>
+                <ul>
+                  <li>Hover ON</li>
+                  <ul>
+                    <li>
+                      A #E9E9E9 light grey background fades in behind the dots
+                      over 150ms
+                    </li>
+                    <li>
+                      While the "..." menu is open, the button stays #111111
+                      near-black with #FFFFFF white dots instead
+                    </li>
+                  </ul>
+                  <li>Hover OFF</li>
+                  <ul>
+                    <li>The background fades away over 150ms</li>
+                    <li>
+                      While the "..." menu is open, the button stays #111111
+                      near-black with #FFFFFF white dots instead
+                    </li>
+                  </ul>
+                  <li>Toggle ON Click</li>
+                  <ul>
+                    <li>
+                      The button shrinks to 95% over 100ms while pressed and
+                      springs back over 150ms on release
+                    </li>
+                    <li>
+                      The background darkens from #E9E9E9 light grey to #111111
+                      near-black and the dots fade from #111111 black to #FFFFFF
+                      white, both over 150ms
+                    </li>
+                    <li>
+                      If a different menu is already open, it closes first by
+                      fading out and shrinking to 85% size over 150ms
+                    </li>
+                    <li>
+                      The "..." menu appears 8px below the button, centered on
+                      it and kept at least 8px from the edges of the screen. If
+                      there isn't room below and there is more room above, it
+                      appears 8px above the button instead
+                    </li>
+                    <li>
+                      The "..." menu fades in over 150ms while springing from
+                      85% to 100% size over 300ms, growing out of the button
+                      with a slight overshoot
+                    </li>
+                    <li>
+                      Starting 100ms in, the "..." menu's content fades in and
+                      drops 6px into place over 200ms, so it looks like it
+                      "lands"
+                    </li>
+                    <li>
+                      While the "..." menu is open, the pin's overlay and its
+                      buttons do not stay visible; they show and hide with the
+                      pin card's hover as usual
+                    </li>
+                  </ul>
+                  <li>Toggle OFF Click</li>
+                  <ul>
+                    <li>
+                      The button shrinks to 95% over 100ms while pressed and
+                      springs back over 150ms on release
+                    </li>
+                    <li>
+                      The background fades back to #E9E9E9 light grey (the hover
+                      color, since the cursor is still on it) and the dots back
+                      to #111111 black, both over 150ms
+                    </li>
+                    <li>
+                      The "..." menu fades out and shrinks back to 85% size over
+                      150ms, with no spring
+                    </li>
+                  </ul>
+                  <li>Click Outside</li>
+                  <ul>
+                    <li>
+                      Clicking anywhere outside the "..." menu and the button
+                      closes the menu
+                    </li>
+                    <li>
+                      The "..." menu fades out and shrinks back to 85% size over
+                      150ms, with no spring
+                    </li>
+                    <li>
+                      The background fades away and the dots fade back to
+                      #111111 black, both over 150ms
+                    </li>
+                    <li>
+                      The pin's overlay is not affected, since the "..." menu
+                      does not keep it visible
+                    </li>
+                  </ul>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <p>
+            The feedback for this microinteraction is only visual; there is no
+            auditory or haptic feedback.
+          </p>
+        </section>
+        <section>
+          <h3>Loops and Modes</h3>
+          <div class="groups groups--cols groups--text">
+            <div class="col">
+              <div class="group">
+                <p class="label">Loops</p>
+                <ul>
+                  <li>None</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col">
+              <div class="group">
+                <p class="label">Mode: Menu Open</p>
+                <ul>
+                  <li>
+                    Opening the board list, Share, or "..." menu puts the pin in
+                    this mode until the menu closes. What changes while a menu
+                    is open is written into each of those buttons' triggers
+                    under Rules and Feedback (the lines starting "While the ...
+                    menu is open"), so it is not repeated here.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col">
+              <div class="group">
+                <p class="label">Mode: Pin Links to a Website</p>
+                <ul>
+                  <li>
+                    The overlay includes the "Visit site" button in the bottom
+                    left, with its hover described under Rules. Pins without a
+                    website link do not show it.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col">
+              <div class="group">
+                <p class="label">Mode: Pin Has a Title</p>
+                <ul>
+                  <li>
+                    The title sits under the card, left of the "..." button, in
+                    #111111 black 14px bold text, cut off with "..." if it is
+                    too long. It does not change in any state. Pins without a
+                    title show only the "..." button.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </article>
+      <hr />
+      <article class="visuals">
+        <h2>Visualization</h2>
+        <section>
+          <div>
+            <h3>Video of the Microinteractions</h3>
+            <video autoplay muted loop controls>
+              <source src="videos/final-recording.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div>
+            <h3>Side-by-Side State Comparison</h3>
+            <div class="comparison">
+              <img
+                src="images/pin-hover.png"
+                alt='Pin card hover: the cursor is on the pin card, and the gradient overlay, board selector, red "Save" button, "Visit site" button, and Share button are showing.'
+              />
+              <img
+                src="images/board-open.png"
+                alt="Board selector open: the cursor is on the board selector, which is 75% black with its chevron pointing up, and the board list menu is open below it."
+              />
+              <img
+                src="images/saved-pop.png"
+                alt='Save click: the cursor is on the button, which reads "Saved!" in #111111 near-black, with short white lines bursting out from it.'
+              />
+              <img
+                src="images/share-open.png"
+                alt="Share open: the Share button is #111111 near-black with a white icon, and the Share menu is open below it with the cursor inside."
+              />
+              <img
+                src="images/more-open.png"
+                alt='"..." open: the "..." button under the card is #111111 near-black with white dots, and its menu is open below it while the pin overlay stays hidden.'
+              />
+            </div>
+          </div>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
